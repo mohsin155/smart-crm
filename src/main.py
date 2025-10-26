@@ -1,6 +1,13 @@
 from fastapi import FastAPI
-from src.core.config import get_settings
-import sys
+from contextlib import asynccontextmanager
+from typing import AsyncGenerator
+from .infrastructure.integrations.aws_client import AWSClient
+
+@asynccontextmanager
+async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
+    response = AWSClient.get_parameter_store("smart-crm-local")
+    print(f"Parameter {response}")
+    yield
 
 def get_env_from_args():
     if "--env" in sys.argv:
@@ -14,7 +21,8 @@ settings = get_settings(env)
 print(settings)
 app = FastAPI(title="Smart CRM", 
               description=" AI Enabled CRM",
-              version="1.0.0")
+              version="1.0.0",
+              lifespan=lifespan)
 
 @app.get("/health")
 def health():
