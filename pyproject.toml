@@ -7,6 +7,9 @@ requires-python = ">=3.13"
 dependencies = [
     "boto3>=1.40.59",
     "fastapi>=0.119.0",
+    "psycopg2>=2.9.11",
+    "sqlalchemy>=2.0.44",
+    "sqlmodel>=0.0.27",
     "uvicorn>=0.37.0",
 ]
 

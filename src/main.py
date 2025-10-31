@@ -2,11 +2,13 @@ from fastapi import FastAPI
 from contextlib import asynccontextmanager
 from typing import AsyncGenerator
 from .infrastructure.integrations.aws_client import AWSClient
+from .infrastructure.database.postgresdb import check_database
 
 @asynccontextmanager
 async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
-    response = AWSClient.get_parameter_store("smart-crm-local")
-    print(f"Parameter {response}")
+    #response = AWSClient.get_parameter_store("smart-crm-local")
+    #print(f"Parameter {response}")
+    await check_database()
     yield
 
 app = FastAPI(title="Smart CRM", 
