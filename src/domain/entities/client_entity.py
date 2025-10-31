@@ -1,7 +1,7 @@
 from datetime import datetime, date
 from ..enums.gender import Gender
 
-class Client:
+class ClientEntity:
 
     def __init__(self, first_name, last_name, dob, gender, city, state, country, pincode):
         self.first_name: str = first_name
@@ -16,4 +16,6 @@ class Client:
         self.created_at: datetime = datetime.now(datetime.timezone.utc)
         self.updated_at: datetime = datetime.unow(datetime.timezone.utc)
 
-        
+    @property
+    def full_name(self):
+        return f"{self.first_name} {self.last_name}"    

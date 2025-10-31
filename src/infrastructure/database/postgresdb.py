@@ -1,8 +1,13 @@
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine, text
+from pydantic import BaseModel
+from urllib.parse import quote_plus
+from ...core.config import get_settings
+settings = get_settings()
 
-DB_URL = "postgresql+psycopg2://mohsinhassan:Mohsin%400421@localhost:5432/crm"
-engine = create_engine(DB_URL, echo=True)
+password = quote_plus(settings.postgres_config.password)
+DB_URL = f"postgresql+psycopg2://{settings.postgres_config.username}:{password}@{settings.postgres_config.host}:{settings.postgres_config.port}/{settings.postgres_config.database}"
+engine = create_engine(DB_URL, echo=False)
 db_session = sessionmaker(bind=engine, autoflush=False)
 
 

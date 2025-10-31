@@ -13,5 +13,5 @@ class RegisterClientRequest(BaseModel):
     city: str
     state: str
     country: str
-    pincode: PinConstraint
+    pincode: PinConstraint 
 

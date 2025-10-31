@@ -21,7 +21,7 @@ async def register_client(request: RegisterClientRequest, client_service: Client
                         country=request.country,
                         pincode=request.pincode)
         
-        client_service.register_client()
+        client_service.register_client(client)
         return {}
     except Exception as e:
         return 
