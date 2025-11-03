@@ -15,3 +15,9 @@ def create_model(client_entity: ClientEntity) -> ClientModel:
         updated_at=client_entity.updated_at
     )
     return client_model
+
+
+def get_entity(client_model: ClientModel) -> ClientEntity:
+    client_entity = ClientEntity(
+        
+    )

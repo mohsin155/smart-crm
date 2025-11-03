@@ -6,6 +6,10 @@ from sqlalchemy.orm import Session
 
 class ClientService:
 
+    def __init__(self, db):
+        self.db = db
+
     async def register_client(self, client: ClientEntity):
-        client_repos = ClientRepository.create_client(client)
-        pass
+        client_repo = ClientRepository(self.db)
+        await client_repo.create(client=client)
+        return client

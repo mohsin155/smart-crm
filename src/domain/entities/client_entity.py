@@ -1,9 +1,10 @@
-from datetime import datetime, date
+from datetime import datetime, date, timezone
 from ..enums.gender import Gender
 
 class ClientEntity:
 
     def __init__(self, first_name, last_name, dob, gender, city, state, country, pincode):
+        self.id: int | None = None
         self.first_name: str = first_name
         self.last_name: str = last_name
         self.dob: date = dob
@@ -13,8 +14,8 @@ class ClientEntity:
         self.country: str = country
         self.pincode: str = pincode  
         self.is_verified: bool = False 
-        self.created_at: datetime = datetime.now(datetime.timezone.utc)
-        self.updated_at: datetime = datetime.unow(datetime.timezone.utc)
+        self.created_at: datetime = datetime.now(timezone.utc)
+        self.updated_at: datetime = datetime.now(timezone.utc)
 
     @property
     def full_name(self):
