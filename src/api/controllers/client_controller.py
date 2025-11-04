@@ -19,8 +19,10 @@ async def register_client(request: RegisterClientRequest, client_service :Client
     try:
         client = ClientEntity(first_name=request.first_name,
                         last_name=request.last_name,
+                        email=request.email,
                         dob=request.dob,
                         gender=request.gender,
+                        password=request.password,
                         city=request.city,
                         state=request.state,
                         country=request.country,

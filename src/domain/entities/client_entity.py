@@ -3,12 +3,14 @@ from ..enums.gender import Gender
 
 class ClientEntity:
 
-    def __init__(self, first_name, last_name, dob, gender, city, state, country, pincode):
+    def __init__(self, first_name, last_name, email, dob, gender, password, city, state, country, pincode):
         self.id: int | None = None
         self.first_name: str = first_name
         self.last_name: str = last_name
+        self.email: str = email
         self.dob: date = dob
         self.gender: Gender = gender
+        self.password: str = password
         self.city: str = city
         self.state: str = state
         self.country: str = country
