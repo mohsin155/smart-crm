@@ -5,6 +5,8 @@ def create_model(client_entity: ClientEntity) -> ClientModel:
     client_model = ClientModel(
         first_name=client_entity.first_name,
         last_name=client_entity.last_name,
+        email=client_entity.email,
+        password=client_entity.password,
         dob=client_entity.dob,
         gender=client_entity.gender,
         state=client_entity.state,
