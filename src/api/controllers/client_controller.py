@@ -30,3 +30,5 @@ async def register_client(request: RegisterClientRequest, client_service :Client
     except Exception as e:
         print(f"Error : {e}")
         return {"error": "Something wrong"}
+    
+    

@@ -1,8 +1,5 @@
 from ..domain.entities.client_entity import ClientEntity
-
-from ..infrastructure.database.postgresdb import get_db
-from ..infrastructure.respositories.client_repository import ClientRepository
-from sqlalchemy.orm import Session
+from ..infrastructure.repositories.client_repository import ClientRepository
 
 class ClientService:
 
