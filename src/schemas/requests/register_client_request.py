@@ -12,8 +12,8 @@ class RegisterClientRequest(BaseModel):
     dob: date = Field(..., format="date"),
     email: EmailStr
     gender: Gender
-    password: str = Field(..., min_length=6, max_length=20)
-    confirm_password: str = Field(..., min_length=6, max_length=20)
+    password: str = Field(..., min_length=6, max_length=72)
+    confirm_password: str = Field(..., min_length=6, max_length=72)
     city: str = Field(..., min_length=2, max_length=20)
     state: str = Field(..., min_length=2, max_length=20)
     country: str = Field(..., min_length=2, max_length=20)
