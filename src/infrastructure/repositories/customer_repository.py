@@ -18,4 +18,4 @@ class CustomerRepository:
 
     async def get_customer_details(self, customer_id: int) -> CustomerEntity:
         customer_model = self.db.get(CustomerModel, customer_id)
-        return create_entity(customer_model=customer_model)
+        return create_entity(customer_model=customer_model) if customer_model else None

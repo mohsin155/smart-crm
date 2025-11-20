@@ -5,14 +5,18 @@ class CustomerService():
     
     def __init__(self, db):
         self.db = db
+        self.cust_repo = CustomerRepository(db=self.db)
 
     async def create_customer(self, customer_entity: CustomerEntity):
-        cust_repo = CustomerRepository(db=self.db)
-        customer_entity = await cust_repo.create_customer(customer=customer_entity)
+        customer_entity = await self.cust_repo.create_customer(customer=customer_entity)
         print(f"Customer Entity {customer_entity}")
         return customer_entity
     
     async def get_customer_details(self, customer_id: int)-> CustomerEntity :
-        cust_repo = CustomerRepository(db=self.db)
-        customer = await cust_repo.get_customer_details(customer_id=customer_id)
+        customer = await self.cust_repo.get_customer_details(customer_id=customer_id)
         return customer
+    
+    async def update_customer(self, customer_id: int)-> CustomerEntity :
+        customer = await self.cust_repo.get_customer_details(customer_id=customer_id)
+        print(customer.__dict__)
+        return

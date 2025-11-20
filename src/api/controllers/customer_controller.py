@@ -22,3 +22,8 @@ async def get_customer_by_id(customer_id: int, customer_service: CustomerService
     customer = await customer_service.get_customer_details(customer_id=customer_id)
     return {"data": customer}
 
+@router.put("/update/{customer_id}")
+async def update_customer(customer_id: int, customer_service: CustomerService = Depends(get_service_dependency)):
+    await customer_service.update_customer(customer_id=customer_id)
+    return {"message": " Update successfully"}
+
