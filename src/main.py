@@ -5,7 +5,7 @@ from contextlib import asynccontextmanager
 from typing import AsyncGenerator
 from .infrastructure.integrations.aws_client import AWSClient
 from .infrastructure.database.postgresdb import check_database, engine
-from .api.controllers import client_controller
+from .api.controllers import client_controller, customer_controller
 from .models.client_model import Base
 
 @asynccontextmanager
@@ -21,7 +21,7 @@ app = FastAPI(title="Smart CRM",
               lifespan=lifespan)
 
 app.include_router(client_controller.router)
-
+app.include_router(customer_controller.router)
 # Overriding the default validation error handler
 # Custom Exception Handler for Request Validation Errors
 @app.exception_handler(RequestValidationError)
