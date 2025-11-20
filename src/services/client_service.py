@@ -1,6 +1,6 @@
 from ..domain.entities.client_entity import ClientEntity
 from ..infrastructure.database.postgresdb import get_db
-from ..infrastructure.respositories.client_repository import ClientRepository
+from ..infrastructure.repositories.client_repository import ClientRepository
 from ..utils.jwt_utils import verify_password, get_password_hash
 from sqlalchemy.orm import Session
 from fastapi import HTTPException, status

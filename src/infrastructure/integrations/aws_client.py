@@ -11,15 +11,6 @@ class AWSClient :
             response = ssm_client.get_parameter(Name=name, WithDecryption=True)
             parameter_value = response['Parameter']['Value']
             return json.loads(parameter_value)
-            # return {
-            #     "postgres_config": {
-            #         "host": "localhost",
-            #         "port": "5432",
-            #         "username": "kumaran",
-            #         "password": "123456",
-            #         "database": "crm"
-            #     }
-            # }
         except ssm_client.exceptions.ParameterNotFound as e:
             raise Exception(f"Parameter does not exists. Name : {name}, Region : {region}") from e
         except ClientError as e:

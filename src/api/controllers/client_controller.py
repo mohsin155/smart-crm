@@ -33,9 +33,6 @@ async def register_client(request: RegisterClientRequest, client_service :Client
         client = await client_service.register_client(client)
         return {"data": {"id":client.id} }
     except HTTPException:
-        raise
-    except Exception as e:
-        print(f"Error : {e}")
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail="Internal server error"
