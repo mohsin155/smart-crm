@@ -10,7 +10,6 @@ DB_URL = f"postgresql+psycopg2://{settings.postgres_config.username}:{password}@
 engine = create_engine(DB_URL, echo=False)
 db_session = sessionmaker(bind=engine, autoflush=False)
 
-
 async def get_db():
     db = db_session()
     try:

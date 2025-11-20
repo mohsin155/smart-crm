@@ -27,8 +27,14 @@ def get_settings(env: str | None = None) -> Settings:
     if not os.path.exists(env_file):
         raise FileNotFoundError(f"Env file does not exist: {env_file}")
     settings = Settings(_env_file=env_file)
-    print(f"Settings : {settings}")
     paramValues = AWSClient.get_parameter_store(settings.parameter_store)
+    print(f"Successfully fetched Parameter Store value")
     merged_settings = settings.model_dump() | paramValues
-    print(f"Merged : {merged_settings}")
+    
+    # Map postgres_db from parameter store to postgres_config
+    if 'postgres_db' in merged_settings:
+        postgres_data = merged_settings['postgres_db'].copy()
+        postgres_data['database'] = postgres_data.get('database', 'smartcrm')
+        merged_settings['postgres_config'] = PostgresConfig(**postgres_data)
+        del merged_settings['postgres_db']
     return Settings(**merged_settings)
